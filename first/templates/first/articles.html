@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style="border: 2px solid #987; padding: 20px; margin-top: 20px;">
+        <h1>Articles</h1>
+
+        {% for article in articles %}
+            <div class="article" style="margin-bottom: 20px;">
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.content }}</p>
+                {% if article.link %}
+                    <a href="{{ article.link }}" class="btn btn-primary" target="_blank">Read more</a>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No articles available.</p>
+        {% endfor %}
+    </div>
+{% endblock content %}
