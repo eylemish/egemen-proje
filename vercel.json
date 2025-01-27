@@ -6,7 +6,15 @@
     }],
     "routes": [
         {
-            "src": "/(.*)",
+            "src": "/static/(.*)",  // Statik dosyalar için yönlendirme
+            "dest": "/static/$1"    // Statik dosyaların doğru yola yönlendirilmesi
+        },
+        {
+            "src": "/media/(.*)",    // Medya dosyaları için yönlendirme (varsa)
+            "dest": "/media/$1"
+        },
+        {
+            "src": "/(.*)",          // Diğer tüm URL'ler Django'ya yönlendirilir
             "dest": "myproject/wsgi.py"
         }
     ]
