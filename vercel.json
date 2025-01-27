@@ -1,21 +1,27 @@
 {
-    "builds": [{
-        "src": "myproject/wsgi.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.13.1" }
-    }],
+    "version": 2,
+    "builds": [
+    {
+    "src": "myproject/wsgi.py",
+    "use": "@vercel/python",
+    "config": { "maxLambdaSize": "15mb", "runtime": "python3.13" }
+    },
+    {
+    "src": "build_files.sh",
+    "use": "@vercel/static-build",
+    "config": {
+    "distDir": "staticfiles_build"
+     }
+    }
+    ],
     "routes": [
-        {
-            "src": "/static/(.*)",  // Statik dosyalar için yönlendirme
-            "dest": "/static/$1"    // Statik dosyaların doğru yola yönlendirilmesi
-        },
-        {
-            "src": "/media/(.*)",    // Medya dosyaları için yönlendirme (varsa)
-            "dest": "/media/$1"
-        },
-        {
-            "src": "/(.*)",          // Diğer tüm URL'ler Django'ya yönlendirilir
-            "dest": "myproject/wsgi.py"
-        }
+    {
+    "src": "/static/(.*)",
+    "dest": "/static/$1"
+    },
+    {
+    "src": "/(.*)",
+    "dest": "myproject/wsgi.py"
+    }
     ]
-}
+    }
