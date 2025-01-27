@@ -1,0 +1,1 @@
+web gunicorn egemen-proje.wsgi:apllication --log-file -
